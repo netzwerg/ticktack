@@ -10,7 +10,7 @@ import UIKit
 
 class TickTackViewCell: UICollectionViewCell {
     
-    @IBOutlet var label : UILabel
+    @IBOutlet var label: UILabel
     
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -19,7 +19,7 @@ class TickTackViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = UIColor.whiteColor()
+        contentView.backgroundColor = UIColor.redColor()
         contentView.opaque = false
         contentView.alpha = 0.5
     }

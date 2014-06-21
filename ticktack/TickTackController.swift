@@ -49,8 +49,12 @@ class TickTackController: UINavigationController {
             var colIndex = indexPath.item
             var itemIndex = (rowIndex * 2) + colIndex
             
+            var highlighted = [0,3,4,7,8]
+            if (contains(highlighted, itemIndex)) {
+                cell.contentView.backgroundColor = UIColor.blueColor()
+            }
 
-            cell.label.text = "yay " + model.items[itemIndex].itemName
+            cell.label.text = model.items[itemIndex].itemName
 
             return cell
         }
@@ -61,15 +65,12 @@ class TickTackController: UINavigationController {
         
         init() {
             super.init()
+            sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            estimatedItemSize = CGSizeMake(160, 100)
             minimumLineSpacing = 0
             minimumInteritemSpacing = 0
-            itemSize = CGSizeMake(160, 100)
+
         }
-        
-        override func collectionViewContentSize() -> CGSize {
-            return CGSizeMake(320, 500)
-        }
-        
         
     }
     
