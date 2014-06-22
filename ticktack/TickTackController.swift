@@ -41,9 +41,10 @@ class TickTackController: UINavigationController {
         }
         
         override func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
-            println("Cell construction")
             
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as TickTackViewCell
+            
+            cell.controller = self
 
             var rowIndex = indexPath.section
             var colIndex = indexPath.item
@@ -54,9 +55,13 @@ class TickTackController: UINavigationController {
                 cell.contentView.backgroundColor = UIColor.blueColor()
             }
 
-            cell.label.text = model.items[itemIndex].itemName
-
+            cell.modelItem = model.items[itemIndex]
+            
             return cell
+        }
+        
+        func cellTapped(cell: TickTackViewCell) {
+            println("Cell tapped: " + cell.label.text)
         }
         
     }
