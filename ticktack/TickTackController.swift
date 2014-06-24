@@ -17,6 +17,8 @@ class TickTackController: UINavigationController {
     
     class TickTackViewController: UICollectionViewController {
         
+        let columnCount = 2
+        let rowCount = 5
         let cellId = TickTackViewCell.description()!
         let model = TickTackModel()
         
@@ -30,38 +32,48 @@ class TickTackController: UINavigationController {
             var nibName = UINib(nibName: "TickTackViewCell", bundle: nil)
             collectionView.registerNib(nibName, forCellWithReuseIdentifier: cellId)
             collectionView.backgroundColor = UIColor.grayColor()
+            collectionView.allowsMultipleSelection = true
         }
         
         override func collectionView(collectionView: UICollectionView!, numberOfItemsInSection section: Int) -> Int {
-            return 2
+            return columnCount
         }
         
         override func numberOfSectionsInCollectionView(collectionView: UICollectionView!) -> Int {
-            return 5
+            return rowCount
+        }
+        
+        func pathToIndex(path: NSIndexPath) -> Int {
+            var rowIndex = path.section
+            var colIndex = path.item
+            return (rowIndex * columnCount) + colIndex
         }
         
         override func collectionView(collectionView: UICollectionView!, cellForItemAtIndexPath indexPath: NSIndexPath!) -> UICollectionViewCell! {
             
             var cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as TickTackViewCell
-            
-            cell.controller = self
 
-            var rowIndex = indexPath.section
-            var colIndex = indexPath.item
-            var itemIndex = (rowIndex * 2) + colIndex
-            
-            var highlighted = [0,3,4,7,8]
-            if (contains(highlighted, itemIndex)) {
-                cell.contentView.backgroundColor = UIColor.blueColor()
-            }
+            var itemIndex = pathToIndex(indexPath)
+            cell.contentView.backgroundColor = ColorController.colorForIndex(itemIndex, selected: cell.selected)
 
             cell.modelItem = model.items[itemIndex]
             
             return cell
         }
         
-        func cellTapped(cell: TickTackViewCell) {
-            println("Cell tapped: " + cell.label.text)
+        override func collectionView(collectionView: UICollectionView!, didSelectItemAtIndexPath indexPath: NSIndexPath!) {
+            updateSelectionState(collectionView, indexPath: indexPath)
+        }
+        
+        override func collectionView(collectionView: UICollectionView!, didDeselectItemAtIndexPath indexPath: NSIndexPath!) {
+            updateSelectionState(collectionView, indexPath: indexPath)
+        }
+        
+        func updateSelectionState(collectionView: UICollectionView!, indexPath: NSIndexPath!) {
+            var cell = collectionView.cellForItemAtIndexPath(indexPath) as TickTackViewCell
+            var itemIndex = pathToIndex(indexPath)
+            cell.modelItem?.toggleCompleted()
+            cell.contentView.backgroundColor = ColorController.colorForIndex(itemIndex, selected: cell.selected)
         }
         
     }

@@ -1,4 +1,4 @@
-//
+
 //  TickTackViewCell.swift
 //  ticktack
 //
@@ -12,13 +12,9 @@ class TickTackViewCell: UICollectionViewCell {
     
     @IBOutlet var label: UILabel
     
-    var controller: TickTackController.TickTackViewController?
     var modelItem: TickTackModel.TickTackItem? {
-        get {
-            return self.modelItem
-        }
-        set(newItem) {
-            label.text = newItem?.itemName
+        didSet {
+             label.text = modelItem?.itemName
         }
     }
     
@@ -30,20 +26,8 @@ class TickTackViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        contentView.backgroundColor = UIColor.redColor()
         contentView.opaque = false
         contentView.alpha = 0.5
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: "cellTapped:")
-        tapGesture.numberOfTapsRequired = 1
-        tapGesture.numberOfTouchesRequired = 1
-        self.addGestureRecognizer(tapGesture)
-    }
-    
-    func cellTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        if tapGestureRecognizer.state == .Ended {
-            controller?.cellTapped(self)
-        }
     }
 
 }

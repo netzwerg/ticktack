@@ -14,6 +14,7 @@
 		5023BFE019561CCE00B492C4 /* TickTackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5023BFDB19561CCE00B492C4 /* TickTackModel.swift */; };
 		5023BFE119561CCE00B492C4 /* TickTackViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5023BFDC19561CCE00B492C4 /* TickTackViewCell.swift */; };
 		50357B2D19561BBF008F93BC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50357B2C19561BBF008F93BC /* Images.xcassets */; };
+		50E0E50419595CC4004FBBC1 /* ColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E0E50319595CC4004FBBC1 /* ColorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		50357B2C19561BBF008F93BC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		50357B3219561BBF008F93BC /* ticktackTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ticktackTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50357B3719561BBF008F93BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50E0E50319595CC4004FBBC1 /* ColorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				5023BFD819561CCE00B492C4 /* TickTackViewCell.xib */,
 				5023BFD919561CCE00B492C4 /* AppDelegate.swift */,
+				50E0E50319595CC4004FBBC1 /* ColorController.swift */,
 				5023BFDA19561CCE00B492C4 /* TickTackController.swift */,
 				5023BFDB19561CCE00B492C4 /* TickTackModel.swift */,
 				5023BFDC19561CCE00B492C4 /* TickTackViewCell.swift */,
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5023BFE019561CCE00B492C4 /* TickTackModel.swift in Sources */,
+				50E0E50419595CC4004FBBC1 /* ColorController.swift in Sources */,
 				5023BFDE19561CCE00B492C4 /* AppDelegate.swift in Sources */,
 				5023BFE119561CCE00B492C4 /* TickTackViewCell.swift in Sources */,
 				5023BFDF19561CCE00B492C4 /* TickTackController.swift in Sources */,

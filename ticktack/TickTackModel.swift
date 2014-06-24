@@ -23,6 +23,12 @@ class TickTackModel {
             self.itemName = itemName
             self.completed = false
         }
+        
+        func toggleCompleted() {
+            completed = !completed
+            println("Model " + itemName + ", completed " + String(completed))
+        }
+        
     }
     
 }
