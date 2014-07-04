@@ -10,9 +10,21 @@ import UIKit
 
 class TickTackController: UINavigationController {
     
+    let model = TickTackModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        pushViewController(TickTackViewController(), animated: false)
+        self.restorationIdentifier = "TickTackController_restorationIdentifier"
+        pushViewController(TickTackViewController(model: model), animated: false)
+    }
+    
+    func saveState(coder: NSCoder) {
+        println("TickTackController.saveState")
+        model.saveState(coder)
+    }
+    
+    func restoreState(decoder: NSCoder) {
+        model.restoreState(decoder)
     }
     
     class TickTackViewController: UICollectionViewController {
@@ -20,9 +32,10 @@ class TickTackController: UINavigationController {
         let columnCount = 2
         let rowCount = 5
         let cellId = TickTackViewCell.description()!
-        let model = TickTackModel()
+        var model: TickTackModel
         
-        init() {
+        init(model: TickTackModel) {
+            self.model = model
             super.init(collectionViewLayout: TickTackLayout())
             println("CollectionViewController init")
         }

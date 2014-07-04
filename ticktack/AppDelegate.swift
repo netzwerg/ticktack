@@ -12,15 +12,36 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    var controller: TickTackController?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         // Override point for customization after application launch.
 
-        var controller = TickTackController()
+        controller = TickTackController()
         self.window!.rootViewController = controller
         
         self.window!.makeKeyAndVisible()
+        return true
+    }
+    
+    func application(application: UIApplication!, shouldSaveApplicationState coder: NSCoder!) -> Bool {
+        return true
+    }
+    
+    func application(application: UIApplication!, shouldRestoreApplicationState coder: NSCoder!) -> Bool {
+        return true
+    }
+    
+    func application(application: UIApplication!, willEncodeRestorableStateWithCoder coder: NSCoder!) -> Bool {
+        println("AppDelegate.willEncodeRestorableStateWithCoder")
+        controller?.saveState(coder)
+        return true
+    }
+    
+    func application(application: UIApplication!, didDecodeRestorableStateWithCoder coder: NSCoder!)  -> Bool {
+        println("AppDelegate.didDecodeRestorableStateWithCoder")
+        controller?.restoreState(coder)
         return true
     }
     

@@ -13,7 +13,7 @@ class TickTackModel {
     let items = Array(map(0 .. 10, {
         (i: Int) -> TickTackItem in return TickTackItem(itemName: String(i))
     }))
-        
+    
     class TickTackItem {
         
         var itemName: String
@@ -30,5 +30,21 @@ class TickTackModel {
         }
         
     }
+    
+    func saveState(aCoder: NSCoder!) {
+        println("TickTackModel.saveState")
+        for item in items {
+            aCoder!.encodeBool(item.completed, forKey: item.itemName)
+        }
+    }
+    
+    func restoreState(aDecoder: NSCoder!) {
+        println("TickTackModel.restoreState")
+        for item in items {
+            item.completed = aDecoder!.decodeBoolForKey(item.itemName)
+            println("Item" + item.itemName + " restored as " + String(item.completed))
+        }
+    }
+
     
 }
